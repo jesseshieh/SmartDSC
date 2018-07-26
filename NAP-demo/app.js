@@ -39,7 +39,8 @@ app.post('/jsoncommand', function(req,res){
 	var alarm_pin = process.env.NODE_ALARM_PIN || config.alarm_pin;
 	if (reqObj.password == STpass) {
 		if (reqObj.command =='arm') {
-			nap.manualCommand('0331'+alarm_pin,function(){
+			// nap.manualCommand('0331'+alarm_pin,function(){
+			nap.manualCommand('0301',function(){
 	  		console.log('armed armed armed armed');
 	  		res.send('arming');
 	  	});
@@ -50,7 +51,9 @@ app.post('/jsoncommand', function(req,res){
 		  	});
 		}
 		if (reqObj.command == 'nightarm') {
-			nap.manualCommand('0711*9'+alarm_pin,function(){
+			// nap.manualCommand('0711*9'+alarm_pin,function(){
+			nap.manualCommand('0311',function(){
+	  		console.log('nightarmed nightarmed nightarmed nightarmed');
 				res.send('nightarm');
 		  	});
 		}
@@ -109,7 +112,7 @@ function httpsRequest (pathURL, jsonString, callback) {
 	};
 
 	var options = {
-		host: 'graph.api.smartthings.com',
+		host: 'graph-na04-useast2.api.smartthings.com',
 		port: 443,
 		path: pathURL,
 		method: 'POST',

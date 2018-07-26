@@ -87,7 +87,7 @@ metadata {
 
 // Parse incoming device messages to generate events
 def parse(String description) {
-
+	log.debug "Parse: $description"
 }
 
 def arm() {
@@ -242,6 +242,7 @@ def contactEnvisalinkJson(String command) {
 
 private String convertIPtoHex(ipAddress) { 
     String hex = ipAddress.tokenize( '.' ).collect {  String.format( '%02x', it.toInteger() ) }.join()
+    hex = hex.toUpperCase()
     log.debug "IP address entered is $ipAddress and the converted hex code is $hex"
     return hex
 
@@ -249,6 +250,7 @@ private String convertIPtoHex(ipAddress) {
 
 private String convertPortToHex(port) {
     String hexport = port.toString().format( '%04x', port.toInteger() )
+    hexport = hexport.toUpperCase()
     log.debug hexport
     return hexport
 }

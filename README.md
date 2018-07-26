@@ -1,3 +1,10 @@
+gpg -d NAP-demo/config.js.asc > NAP-demo/config.js
+make sure envisalink has a static ip
+changed this to have no alarm pin. 
+it can arm and nightarm, but not disarm
+this uses smartthings hub v1 firmware version 000.013.00013
+
+
 SmartDSC
 =====================
 ----

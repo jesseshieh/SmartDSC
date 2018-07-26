@@ -48,8 +48,8 @@ def copyConfig() {
 
         section() {
             paragraph "View this SmartApp's configuration to use it in other places."
-            href url:"https://graph.api.smartthings.com/api/smartapps/installations/${app.id}/config?access_token=${state.accessToken}", style:"embedded", required:false, title:"Config", description:"Tap, select, copy, then click \"Done\""
-            href url:"https://graph.api.smartthings.com/api/smartapps/installations/${app.id}/devices?access_token=${state.accessToken}", style:"embedded", required:false, title:"Debug", description:"View accessories JSON"
+            href url:"https://graph-na04-useast2.api.smartthings.com/api/smartapps/installations/${app.id}/config?access_token=${state.accessToken}", style:"embedded", required:false, title:"Config", description:"Tap, select, copy, then click \"Done\""
+            href url:"https://graph-na04-useast2.api.smartthings.com/api/smartapps/installations/${app.id}/devices?access_token=${state.accessToken}", style:"embedded", required:false, title:"Debug", description:"View accessories JSON"
         }
     }
 }
@@ -325,8 +325,9 @@ def installed() {
         subscribe(dscthing, "updateDSC", updateDSC)   
     }
     if (location) {
-    	subscribe(location, "routineExecuted", modeChangeHandler)
-        // subscribe(location, "mode", modeChangeHandler)   
+    	// subscribe(location, "routineExecuted", modeChangeHandler)
+        log.debug "changing mode subscription: $location"
+        subscribe(location, "mode", modeChangeHandler)   
     }
     if (locks) {
         subscribe(locks, "lock", lockHandler)   
@@ -601,6 +602,7 @@ def modeChangeHandler(evt) {
             setSmartHomeMonitor("off")
         }
     }
+    log.debug "helloArm is $helloArm"
     if (evt.value == helloArm && evt.isStateChange) {
         if (dscthing) {
             dscthing.arm()
@@ -609,6 +611,7 @@ def modeChangeHandler(evt) {
             setSmartHomeMonitor("away")
         }
     }
+    log.debug "helloNight is $helloNight"
     if (evt.value == helloNight && evt.isStateChange) {
         if (dscthing) {
             dscthing.nightarm()
@@ -628,3 +631,4 @@ private setSmartHomeMonitor(status)
     	sendLocationEvent(name: "alarmSystemStatus", value: status)
     }
 }
+
