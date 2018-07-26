@@ -4,6 +4,14 @@ changed this to have no alarm pin.
 it can arm and nightarm, but not disarm
 this uses smartthings hub v1 firmware version 000.013.00013
 
+when leaving the house
+Google Assistant Routine -> Adjust Scene Goodbye -> Smartthings Mode Changes to Away -> SmartDSC App subscribes to mode change and arms -> SmartDSC Alarm Thing Device Handler issues HTTP POST -> SmartDSC node app receives POST and issues command to Envisalink
+
+when disarming
+Manual code entry for security -> Envisalink broadcast or SmartDSC node app poll? -> SmartDSC node app sends update to SmartDSC SmartApp -> changes mode to Home
+
+needs to change mode to Home so that next time when mode changes to Away, it triggers a mode change.
+
 
 SmartDSC
 =====================
