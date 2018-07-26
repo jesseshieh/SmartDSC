@@ -43,4 +43,4 @@ node_modules
 dockercmd
 
 .DS_Store
-NAP-demo/config.js
+/NAP-demo/config.js
