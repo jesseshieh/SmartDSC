@@ -44,3 +44,4 @@ dockercmd
 
 .DS_Store
 /NAP-demo/config.js
+/NAP-demo/NAP-demo.log

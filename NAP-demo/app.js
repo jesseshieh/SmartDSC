@@ -65,6 +65,7 @@ app.post('/jsoncommand', function(req,res){
 	}
 });
 alarm.on('zone', function(data) {
+	console.log(new Date(), data);
 	if (config.watchevents.indexOf(data.code) != -1) {
 		var jsonString = JSON.stringify(data);
 		var app_id = process.env.NODE_ALARM_APP_ID || config.app_id;
@@ -78,7 +79,7 @@ alarm.on('zone', function(data) {
 });
 
 alarm.on('partition', function(data) {
-	console.log('data:',data);
+	console.log(new Date(), data);
 	if (config.watchevents.indexOf(data.code) != -1) {
 		var jsonString = JSON.stringify(data);
 		var app_id = process.env.NODE_ALARM_APP_ID || config.app_id;
