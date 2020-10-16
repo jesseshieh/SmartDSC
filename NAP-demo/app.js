@@ -54,8 +54,15 @@ app.post('/jsoncommand', function(req,res){
 			// nap.manualCommand('0711*9'+alarm_pin,function(){
 			nap.manualCommand('0311',function(){
 	  		console.log('nightarmed nightarmed nightarmed nightarmed');
-				res.send('nightarm');
-		  	});
+        try {
+          res.send('nightarm');
+        } catch (e) {
+          console.log("error sending response");
+          console.log(e);
+          console.log(req);
+          console.log(res);
+        }
+		  });
 		}
 		if (reqObj.command == 'status') {
 			sendStatus(function(){
